@@ -39,25 +39,25 @@ __meta__ = {
 }
 
 [node name="LeftTopRay" type="RayCast2D" parent="."]
-position = Vector2( -4, 0 )
+position = Vector2( -4, -1 )
 rotation = 1.5708
 enabled = true
 cast_to = Vector2( 0, 2 )
 
 [node name="LeftBottomRay" type="RayCast2D" parent="."]
-position = Vector2( -4, 3 )
+position = Vector2( -4, 4 )
 rotation = 1.5708
 enabled = true
 cast_to = Vector2( 0, 2 )
 
 [node name="RightTopRay" type="RayCast2D" parent="."]
-position = Vector2( 4, 0 )
+position = Vector2( 4, -1 )
 rotation = -1.5708
 enabled = true
 cast_to = Vector2( 0, 2 )
 
 [node name="RightBottomRay" type="RayCast2D" parent="."]
-position = Vector2( 4, 3 )
+position = Vector2( 4, 4 )
 rotation = -1.5708
 enabled = true
 cast_to = Vector2( 0, 2 )

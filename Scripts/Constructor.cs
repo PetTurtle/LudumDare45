@@ -27,7 +27,6 @@ public class Constructor : Node2D
                 {
                     activeAnchor.destory();
                     activeAnchor = null;
-                    
                 }
                 else // Placing anchor into world
                 {
@@ -42,6 +41,7 @@ public class Constructor : Node2D
                     else
                     {
                         activeAnchor.setActive(true);
+                        activeAnchor.AddCentralForce(new Vector2(0, 0.1f));
                         anchors.Add(activeAnchor);
                         activeAnchor = null;
                     }
@@ -74,6 +74,8 @@ public class Constructor : Node2D
         Anchor anchor = newAnchor(ToLocal(braces[0].GlobalPosition));
         anchor.GlobalPosition = preAnchor.GlobalPosition;
         anchor.Rotation = preAnchor.Rotation;
+        anchor.SetAngularVelocity(preAnchor.GetAngularVelocity());
+        anchor.SetLinearVelocity(preAnchor.GetLinearVelocity());
         anchors.Add(anchor);
         foreach(Brace brace in braces)
         {

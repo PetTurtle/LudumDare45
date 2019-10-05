@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scenes\Game.cs" />
     <Compile Include="Scripts\Anchor.cs" />
     <Compile Include="Scripts\Brace.cs" />
     <Compile Include="Scripts\Connector.cs" />
