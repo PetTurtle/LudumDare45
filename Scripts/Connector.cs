@@ -4,7 +4,7 @@ using System;
 public class Connector : CollisionShape2D
 {
     private Sprite sprite;
-    private Brace a, b;
+    public Brace a, b;
 
     public override void _EnterTree()
     {

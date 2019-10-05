@@ -7,7 +7,8 @@ public class Brace : CollisionShape2D
 {
     private Sprite sprite;
     public Anchor anchor;
-    SC.List<Connector> connectors = new SC.List<Connector>();
+    
+    public SC.List<Connector> connectors = new SC.List<Connector>();
 
     public override void _EnterTree()
     {
@@ -20,6 +21,19 @@ public class Brace : CollisionShape2D
         Connector connector = (Connector) connectorScene.Instance();
         GetParent().AddChild(connector);
         connector.setShape(this, brace);
+    }
+
+    public void updateConnection()
+    {
+        if (connectors != null && connectors.Count > 0)
+            foreach(Connector connector in connectors)
+            {
+                if (connector.GetParent() != GetParent())
+                {
+                    connector.GetParent().RemoveChild(connector);
+                    GetParent().AddChild(connector);
+                }
+            }
     }
 
     public bool canSee(Brace brace)
@@ -45,9 +59,8 @@ public class Brace : CollisionShape2D
 
     public void remove()
     {
-        // if (connectors != null && connectors.Count > 0)
-        //     foreach(Connector connector in connectors)
-        //         connector.remove();
+        if (connectors != null && connectors.Count > 0)
+            destoryConnectors();
         
         if (anchor != null)
             anchor.removeBraceFromList(this);
@@ -62,6 +75,28 @@ public class Brace : CollisionShape2D
     public void removeConnectorFromList(Connector connector)
     {
         connectors.Remove(connector);
+    }
+
+    public void ConnectedBraces(SC.List<Brace> connected)
+    {
+        if (!connected.Contains(this))
+        {
+            connected.Add(this);
+            foreach(Connector connector in connectors)
+            {
+                connector.a.ConnectedBraces(connected);
+                connector.b.ConnectedBraces(connected);
+            }
+        }
+    }
+
+    private void destoryConnectors()
+    {
+        for(int i = connectors.Count-1; i >= 0; i--)
+        {
+            
+            connectors[i].remove();
+        }
     }
 
     private void connectorToggle(bool state)

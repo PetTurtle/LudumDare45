@@ -9,7 +9,7 @@ public class Anchor : RigidBody2D
     public bool canConnect() => true;
     private bool active = false;
 
-    private List<Brace> braces = new List<Brace>();
+    public List<Brace> braces = new List<Brace>();
 
     public override void _Ready()
     {
@@ -54,7 +54,33 @@ public class Anchor : RigidBody2D
         braces.Remove(brace);
         if (braces.Count == 0)
             destory();
+        else
+        {
+            List<Brace> connected = new List<Brace>();
+            braces[0].ConnectedBraces(connected);
+            if (connected.Count != braces.Count)
+            {
+                Brace notConnectedBrace = null;
+                List<Brace> notConnected = new List<Brace>();
+                for(int i = 0; i < braces.Count; i++)  // TODO: lots of repeated checks
+                {
+                    if (!connected.Contains(braces[i]))
+                    {
+                        notConnectedBrace = braces[i];
+                        notConnectedBrace.ConnectedBraces(notConnected);
+                    }
+                }
+                foreach(Brace nbrace in notConnected)
+                    braces.Remove(nbrace);
+                
+                GD.Print(braces.Count);
+                constructor.newSumAnchor(notConnected, this);
+                CenterGravity();
+            }
+        }
     }
+
+    public int braceCount() => braces.Count;
 
     public void CenterGravity()
     {

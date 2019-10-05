@@ -60,7 +60,6 @@ public class Constructor : Node2D
                 Anchor anchor = getRayCastAnchor();
                 if (anchor != null)
                     anchor.removeBrace(GetGlobalMousePosition());
-                
             }
         }
     }
@@ -68,6 +67,25 @@ public class Constructor : Node2D
     public void removeAnchorFromList(Anchor anchor)
     {
         anchors.Remove(anchor);
+    }
+
+    public void newSumAnchor(SC.List<Brace> braces, Anchor preAnchor)
+    {
+        Anchor anchor = newAnchor(ToLocal(braces[0].GlobalPosition));
+        anchor.GlobalPosition = preAnchor.GlobalPosition;
+        anchor.Rotation = preAnchor.Rotation;
+        anchors.Add(anchor);
+        foreach(Brace brace in braces)
+        {
+            anchor.addBraceToList(brace);
+            brace.anchor = anchor;
+            brace.GetParent().RemoveChild(brace);
+            anchor.AddChild(brace);
+            brace.updateConnection();
+        }
+        anchor.braces[0].remove();
+        anchor.setActive(true);
+        anchor.CenterGravity();
     }
 
     private Anchor newAnchor(Vector2 position)
