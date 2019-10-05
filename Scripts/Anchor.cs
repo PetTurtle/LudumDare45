@@ -114,6 +114,15 @@ public class Anchor : RigidBody2D
         }
     }
 
+    public void removeClosestBrace(Vector2 pos)
+    {
+        Brace brace = getClosestBrace(pos);
+        if (brace != null)
+        {
+            brace.remove();
+        }
+    }
+
     public void destory()
     {
         constructor.removeAnchorFromList(this);

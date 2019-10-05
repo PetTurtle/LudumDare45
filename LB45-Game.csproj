@@ -56,6 +56,7 @@
     <Compile Include="Scripts\Connector.cs" />
     <Compile Include="Scripts\Constructor.cs" />
     <Compile Include="Scripts\Player.cs" />
+    <Compile Include="Scripts\Spike.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

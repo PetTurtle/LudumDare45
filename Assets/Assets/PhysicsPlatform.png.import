@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Spikes1.png-40a7eae30c9fe9fee6b85e011e1fba49.stex"
+path="res://.import/PhysicsPlatform.png-a3f30ccc7e19c3a676357c71aba60b14.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Assets/Spikes1.png"
-dest_files=[ "res://.import/Spikes1.png-40a7eae30c9fe9fee6b85e011e1fba49.stex" ]
+source_file="res://Assets/Assets/PhysicsPlatform.png"
+dest_files=[ "res://.import/PhysicsPlatform.png-a3f30ccc7e19c3a676357c71aba60b14.stex" ]
 
 [params]
 
