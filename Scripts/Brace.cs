@@ -1,46 +1,74 @@
 using Godot;
 using System;
+using GC = Godot.Collections;
+using SC = System.Collections.Generic;
 
-public class Brace : Node2D
+public class Brace : CollisionShape2D
 {
-    private Anchor a, b;
-    private PinJoint2D joint;
-    private Connector connector;
+    private Sprite sprite;
+    public Anchor anchor;
+    SC.List<Connector> connectors = new SC.List<Connector>();
 
-    public void set(Anchor a, Anchor b)
+    public override void _EnterTree()
     {
-        this.a = a;
-        this.b = b;
-        setConnector();
-        a.AddChild(connector);
-        a.GetParent().AddChild(connector);
-        connector.setShape(a, b);
-        setJoint();
-        b.addBrace(this);
-        a.GetParent().AddChild(this);
+        sprite = (Sprite)GetNode("Sprite");
     }
 
-    public void removeBrace()
+    public void connect(Brace brace)
     {
-        a.removeBrace(this);
-        b.removeBrace(this);
+        var connectorScene = GD.Load<PackedScene>("res://Scenes/Assets/Connector.tscn");
+        Connector connector = (Connector) connectorScene.Instance();
+        GetParent().AddChild(connector);
+        connector.setShape(this, brace);
+    }
+
+    public bool canSee(Brace brace)
+    {
+        bool value = true;
+        var spaceState = GetWorld2d().DirectSpaceState;
+        var terrainResult = spaceState.IntersectRay(this.GlobalPosition, brace.GlobalPosition, null, 1);
+        if (terrainResult.Count > 0)
+            value = false;
+        
+        return value;
+    }
+
+    public void setActive(bool value)
+    {
+        if (value) {
+            Disabled = false;
+        } else {
+            Disabled = true;
+        }
+        connectorToggle(value);
+    }
+
+    public void remove()
+    {
+        // if (connectors != null && connectors.Count > 0)
+        //     foreach(Connector connector in connectors)
+        //         connector.remove();
+        
+        if (anchor != null)
+            anchor.removeBraceFromList(this);
         this.QueueFree();
     }
 
-    private void setJoint()
+    public void addConnectorToList(Connector connector)
     {
-        joint = new PinJoint2D();
-        a.AddChild(joint);
-        a.SetLinearVelocity(Vector2.Zero);
-        b.SetLinearVelocity(Vector2.Zero);
-        joint.GlobalPosition = a.GlobalPosition;
-        joint.NodeA = a.GetPath();
-        joint.NodeB = b.GetPath();
+        connectors.Add(connector);
     }
 
-    private void setConnector()
+    public void removeConnectorFromList(Connector connector)
     {
-        var connectorScene = GD.Load<PackedScene>("res://Scenes/Assets/Connector.tscn");
-        connector = (Connector)connectorScene.Instance();
+        connectors.Remove(connector);
+    }
+
+    private void connectorToggle(bool state)
+    {
+        foreach(Connector connector in connectors)
+        {
+            connector.setActive(state);
+        }
     }
 }

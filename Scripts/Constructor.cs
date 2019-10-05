@@ -23,31 +23,28 @@ public class Constructor : Node2D
 
             if (Input.IsActionJustReleased("spawn_anchor"))
             {
-                if (rayCastinTerrain() || rayCastinPlayer())
+                if (rayCastinTerrain() || rayCastinPlayer() || rayCastinAnchor())
                 {
                     activeAnchor.destory();
                     activeAnchor = null;
-                }
-                else if (rayCastinAnchor())
-                {
-                    activeAnchor.destory();
-                    activeAnchor = getRayCastAnchor();
-                    if (activeAnchor != startAnchor && startAnchor.canConnect() && activeAnchor.canConnect())
-                    {
-                        activeAnchor.connect(startAnchor);
-                    }
-                    activeAnchor = null;
+                    
                 }
                 else // Placing anchor into world
                 {
-                    activeAnchor.setActive(true);
-                    anchors.Add(activeAnchor);
-
-                    if (startAnchor != null && startAnchor.canConnect()) // connect to start anchor TEMP
-                        startAnchor.connect(activeAnchor);
-
-                    activeAnchor = null;
-                    startAnchor = null;
+                    if (startAnchor != null && startAnchor.canConnect())
+                    {
+                        Brace brace = newBrace(GetGlobalMousePosition());
+                        startAnchor.connect(brace);
+                        activeAnchor.destory();
+                        activeAnchor = null;
+                        startAnchor = null;
+                    }
+                    else
+                    {
+                        activeAnchor.setActive(true);
+                        anchors.Add(activeAnchor);
+                        activeAnchor = null;
+                    }
                 }
             }
         }
@@ -58,7 +55,19 @@ public class Constructor : Node2D
                 activeAnchor = newAnchor(GetGlobalMousePosition());
                 startAnchor = getRayCastAnchor();
             }
+            else if (Input.IsActionJustPressed("remove_anchor"))
+            {
+                Anchor anchor = getRayCastAnchor();
+                if (anchor != null)
+                    anchor.removeBrace(GetGlobalMousePosition());
+                
+            }
         }
+    }
+
+    public void removeAnchorFromList(Anchor anchor)
+    {
+        anchors.Remove(anchor);
     }
 
     private Anchor newAnchor(Vector2 position)
@@ -66,10 +75,15 @@ public class Constructor : Node2D
         var anchorScene = GD.Load<PackedScene>("res://Scenes/Assets/Anchor.tscn");
         Anchor anchor = (Anchor) anchorScene.Instance();
         anchor.Position = position;  
+        anchor.constructor = this;
         AddChild(anchor);
         return anchor;
     }
 
+    private Brace newBrace(Vector2 position)
+    {
+        return (Brace) GD.Load<PackedScene>("res://Scenes/Assets/Brace.tscn").Instance();
+    }
 
     private Anchor getRayCastAnchor() {
         var spaceState = GetWorld2d().GetDirectSpaceState();
