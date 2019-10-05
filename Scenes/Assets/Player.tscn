@@ -20,7 +20,6 @@ current = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 2 )
 animation = "run"
-frame = 1
 speed_scale = 2.0
 playing = true
 

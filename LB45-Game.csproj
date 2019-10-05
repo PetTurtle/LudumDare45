@@ -55,6 +55,9 @@
     <Compile Include="Scripts\Brace.cs" />
     <Compile Include="Scripts\Connector.cs" />
     <Compile Include="Scripts\Constructor.cs" />
+    <Compile Include="Scripts\Entrance.cs" />
+    <Compile Include="Scripts\Exit.cs" />
+    <Compile Include="Scripts\Level.cs" />
     <Compile Include="Scripts\Player.cs" />
     <Compile Include="Scripts\Projectile.cs" />
     <Compile Include="Scripts\ProjectileLauncher.cs" />
