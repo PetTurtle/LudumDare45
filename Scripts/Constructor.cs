@@ -23,9 +23,19 @@ public class Constructor : Node2D
 
             if (Input.IsActionJustReleased("spawn_anchor"))
             {
-                if (rayCastinTerrain() || rayCastinPlayer() || rayCastinAnchor())
+                if (rayCastinTerrain() || rayCastinPlayer())
                 {
                     activeAnchor.destory();
+                    activeAnchor = null;
+                }
+                else if (rayCastinAnchor())
+                {
+                    activeAnchor.destory();
+                    activeAnchor = getRayCastAnchor();
+                    if (activeAnchor != startAnchor && startAnchor.canConnect() && activeAnchor.canConnect())
+                    {
+                        activeAnchor.connect(startAnchor);
+                    }
                     activeAnchor = null;
                 }
                 else // Placing anchor into world

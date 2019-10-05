@@ -20,6 +20,7 @@ current = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 2 )
 animation = "run"
+frame = 1
 speed_scale = 2.0
 playing = true
 
@@ -30,7 +31,7 @@ shape = SubResource( 1 )
 [node name="GroundRay" type="RayCast2D" parent="."]
 position = Vector2( 0, 6 )
 enabled = true
-cast_to = Vector2( 0, 3 )
+cast_to = Vector2( 0, 4 )
 __meta__ = {
 "_edit_group_": true
 }

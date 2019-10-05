@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 public class Anchor : RigidBody2D
 {
-    public bool canConnect() => joints.Count < MAXJOINTS;
+    public bool canConnect() => braces.Count < MAXJOINTS;
     private static int MAXJOINTS = 4;
     private CollisionShape2D collision;
     private bool active = false;
-    private List<PinJoint2D> joints = new List<PinJoint2D>();
+    private List<Brace> braces = new List<Brace>();
 
     public override void _Ready()
     {
@@ -19,9 +19,21 @@ public class Anchor : RigidBody2D
     {
         if (canConnect())
         {
-            PinJoint2D joint = newJoint();
-            joint.NodeB = anchor.GetPath();
+            var braceScene = GD.Load<PackedScene>("res://Scenes/Assets/Brace.tscn");
+            Brace brace = (Brace) braceScene.Instance();
+            braces.Add(brace);
+            brace.set(this, anchor);
         }
+    }
+
+    public void addBrace(Brace brace)
+    {
+        braces.Add(brace);
+    }
+
+    public void removeBrace(Brace brace)
+    {
+        braces.Remove(brace);
     }
 
     public void setActive(bool value)
@@ -40,14 +52,5 @@ public class Anchor : RigidBody2D
     public void destory()
     {
         this.QueueFree();
-    }
-
-    private PinJoint2D newJoint()
-    {
-        PinJoint2D joint = new PinJoint2D();
-        joint.Position = this.Position;
-        joint.NodeA = this.GetPath();
-        AddChild(joint);
-        return joint;
     }
 }

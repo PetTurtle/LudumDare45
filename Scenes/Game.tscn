@@ -1,12 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/Tileset/Tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Assets/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Constructor.cs" type="Script" id=3]
-[ext_resource path="res://Assets/Anchors/goo.png" type="Texture" id=4]
-
-[sub_resource type="CircleShape2D" id=1]
-radius = 3.88515
 
 [node name="Game" type="Node2D"]
 
@@ -22,28 +18,3 @@ tile_data = PoolIntArray( 458768, 0, 0, 458769, 0, 1, 458770, 0, 2, 458771, 0, 3
 
 [node name="Constructor" type="Node2D" parent="."]
 script = ExtResource( 3 )
-
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-position = Vector2( 133.189, 138.951 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="PinJoint2D" type="PinJoint2D" parent="RigidBody2D"]
-node_a = NodePath("..")
-node_b = NodePath("../../RigidBody2D2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-shape = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="RigidBody2D"]
-texture = ExtResource( 4 )
-
-[node name="RigidBody2D2" type="RigidBody2D" parent="."]
-position = Vector2( 184.705, 153.325 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
-shape = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="RigidBody2D2"]
-texture = ExtResource( 4 )
