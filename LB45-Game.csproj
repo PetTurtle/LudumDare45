@@ -57,6 +57,7 @@
     <Compile Include="Scripts\Constructor.cs" />
     <Compile Include="Scripts\Player.cs" />
     <Compile Include="Scripts\Spike.cs" />
+    <Compile Include="Scripts\Wheel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

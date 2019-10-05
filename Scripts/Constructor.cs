@@ -5,8 +5,8 @@ using GC = Godot.Collections;
 
 public class Constructor : Node2D
 {
-    private Anchor activeAnchor;
-    private Anchor startAnchor;
+    public Anchor activeAnchor;
+    public Anchor startAnchor;
     private SC.List<Anchor> anchors = new SC.List<Anchor>();
     private bool hasActiveAnchor() => activeAnchor != null;
 
@@ -27,10 +27,11 @@ public class Constructor : Node2D
                 {
                     activeAnchor.destory();
                     activeAnchor = null;
+                    startAnchor = null;
                 }
                 else // Placing anchor into world
                 {
-                    if (startAnchor != null && startAnchor.canConnect())
+                    if (startAnchor != null && activeAnchor != null)
                     {
                         Brace brace = newBrace(GetGlobalMousePosition());
                         startAnchor.connect(brace);

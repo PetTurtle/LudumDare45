@@ -6,7 +6,6 @@ public class Anchor : RigidBody2D
 {
     public Constructor constructor;
     private static int MAXBUILDLENGTH = 30;
-    public bool canConnect() => true;
     private bool active = false;
 
     public List<Brace> braces = new List<Brace>();
@@ -21,26 +20,23 @@ public class Anchor : RigidBody2D
 
     public void connect(Brace brace)
     {
-        if (canConnect())
+        brace.anchor = this;
+        AddChild(brace);
+        brace.GlobalPosition = GetGlobalMousePosition();
+        List<Brace> range = getBracesInRange(brace.GlobalPosition);
+        if (range.Count > 0)
         {
-            brace.anchor = this;
-            AddChild(brace);
-            brace.GlobalPosition = GetGlobalMousePosition();
-            List<Brace> range = getBracesInRange(brace.GlobalPosition);
-            if (range.Count > 0)
+            foreach(Brace b in range)
             {
-                foreach(Brace b in range)
-                {
-                    if (b.canSee(brace))
-                        b.connect(brace);
-                }
-                braces.Add(brace);
-                CenterGravity();
+                if (b.canSee(brace))
+                    b.connect(brace);
             }
-            else
-            {
-                brace.remove();
-            }
+            braces.Add(brace);
+            CenterGravity();
+        }
+        else
+        {
+            brace.remove();
         }
     }
 
@@ -126,6 +122,17 @@ public class Anchor : RigidBody2D
     public void destory()
     {
         constructor.removeAnchorFromList(this);
+        if (constructor.activeAnchor == this)
+        {
+            constructor.activeAnchor = null;
+            constructor.startAnchor = null;
+        }
+        else if (constructor.startAnchor == this)
+        {
+            constructor.activeAnchor.destory();
+            constructor.activeAnchor = null;
+            constructor.startAnchor = null;
+        }
         this.QueueFree();
     }
 
