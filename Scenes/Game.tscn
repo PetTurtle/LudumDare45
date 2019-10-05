@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Game.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/Assets/Player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,10 @@
 [ext_resource path="res://Scenes/Assets/Spike.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Assets/Entrance.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Assets/Exit.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/UI/GooUI.png" type="Texture" id=9]
+[ext_resource path="res://Scripts/GooCounter.cs" type="Script" id=10]
+[ext_resource path="res://Assets/UI/GooEmpty.png" type="Texture" id=11]
+[ext_resource path="res://Assets/UI/GooFull.png" type="Texture" id=12]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -77,3 +81,38 @@ position = Vector2( 209.65, 109.377 )
 [node name="Exit" parent="Level" instance=ExtResource( 8 )]
 position = Vector2( 760.196, 152.179 )
 collision_mask = 31
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
+
+[node name="GooCounter" type="TextureRect" parent="CanvasLayer"]
+editor/display_folded = true
+margin_left = 10.5862
+margin_top = 10.0
+margin_right = 50.5862
+margin_bottom = 49.9679
+rect_scale = Vector2( 3, 3 )
+texture = ExtResource( 9 )
+script = ExtResource( 10 )
+
+[node name="Label" type="Label" parent="CanvasLayer/GooCounter"]
+margin_left = 10.1453
+margin_top = 4.71282
+margin_right = 26.1453
+margin_bottom = 20.7128
+rect_scale = Vector2( 0.5, 0.5 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="TextureProgress" type="TextureProgress" parent="CanvasLayer/GooCounter"]
+show_behind_parent = true
+margin_left = 1.0977
+margin_top = 1.93712
+margin_right = 41.0977
+margin_bottom = 41.9371
+max_value = 10.0
+texture_under = ExtResource( 11 )
+texture_progress = ExtResource( 12 )
+fill_mode = 3
+[connection signal="GooAmount" from="Constructor" to="CanvasLayer/GooCounter" method="SetValue"]

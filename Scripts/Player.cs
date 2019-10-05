@@ -3,6 +3,8 @@ using System;
 
 public class Player : RigidBody2D
 {
+    [Signal]
+    public delegate void PlayerDead();
     public int moveSpeed = 5;
     public int jumpForce = 70;
     public int maxSpeed = 50;
@@ -28,12 +30,16 @@ public class Player : RigidBody2D
 
     public override void _IntegrateForces(Physics2DDirectBodyState state)
     {
-        //GD.Print(isCollidingLeft() + " - " + isCollidingRight());
         Vector2 velocity = GetLinearVelocity();
         velocity = updatedVelocity(velocity);
         updateAnimation(velocity);
         SetLinearVelocity(velocity);
         jump();
+    }
+
+    public void Kill()
+    {
+        EmitSignal("PlayerDead");
     }
 
     private Vector2 updatedVelocity(Vector2 velocity)

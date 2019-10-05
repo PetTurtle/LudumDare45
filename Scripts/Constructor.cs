@@ -5,6 +5,11 @@ using GC = Godot.Collections;
 
 public class Constructor : Node2D
 {
+    [Signal]
+    public delegate void GooAmount();
+    public int gooAmount = 10;
+    public int maxGoo = 10;
+    public Player player;
     public Anchor activeAnchor;
     public Anchor startAnchor;
     private SC.List<Anchor> anchors = new SC.List<Anchor>();
@@ -28,6 +33,7 @@ public class Constructor : Node2D
                     activeAnchor.destory();
                     activeAnchor = null;
                     startAnchor = null;
+                    addGoo();
                 }
                 else // Placing anchor into world
                 {
@@ -51,7 +57,7 @@ public class Constructor : Node2D
         }
         else // does not have active anchor
         {
-            if (Input.IsActionJustPressed("spawn_anchor") && !rayCastinTerrain())
+            if (Input.IsActionJustPressed("spawn_anchor") && !rayCastinTerrain() && player.isGround() && removeGoo())
             {
                 activeAnchor = newAnchor(GetGlobalMousePosition());
                 startAnchor = getRayCastAnchor();
@@ -59,8 +65,11 @@ public class Constructor : Node2D
             else if (Input.IsActionJustPressed("remove_anchor"))
             {
                 Anchor anchor = getRayCastAnchor();
-                if (anchor != null)
-                    anchor.removeBrace(GetGlobalMousePosition());
+                if (anchor != null && hasGooSpace())
+                {
+                     if (anchor.removeBrace(GetGlobalMousePosition()))
+                        addGoo();
+                }
             }
         }
     }
@@ -132,4 +141,44 @@ public class Constructor : Node2D
         var result = spaceState.IntersectPoint(GetGlobalMousePosition(), 32, null, 4); // add collision layer
         return result.Count != 0;
     }
+
+    private Anchor getClosestAnchor() {
+        float minDistance = 10000;
+        Anchor closest = null;
+        foreach(Anchor anchor in anchors)
+        {
+            float distance = anchor.getClosestDistance(GetGlobalMousePosition());
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                closest = anchor;
+            }
+        }
+        return closest;
+    }
+
+    public bool addGoo()
+    {
+        if (hasGooSpace())
+        {
+            gooAmount++;
+            GD.Print(gooAmount);
+            EmitSignal("GooAmount", gooAmount);
+            return true;
+        }
+        return false;
+    }
+
+    public bool removeGoo()
+    {
+        if (gooAmount - 1 >= 0)
+        {
+            gooAmount--;
+            EmitSignal("GooAmount", gooAmount);
+            return true;
+        }
+        return false;
+    }
+
+    public bool hasGooSpace() => gooAmount + 1 <= maxGoo;
 }

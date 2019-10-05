@@ -57,6 +57,7 @@
     <Compile Include="Scripts\Constructor.cs" />
     <Compile Include="Scripts\Entrance.cs" />
     <Compile Include="Scripts\Exit.cs" />
+    <Compile Include="Scripts\GooCounter.cs" />
     <Compile Include="Scripts\Level.cs" />
     <Compile Include="Scripts\Player.cs" />
     <Compile Include="Scripts\Projectile.cs" />

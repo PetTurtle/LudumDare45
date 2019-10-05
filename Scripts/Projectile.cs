@@ -25,7 +25,7 @@ public class Projectile : Area2D
     {
         if (body is Player)
         {
-            GD.Print("PLAYER!");
+            ((Player) body).Kill();
         }
         else if (body is Anchor)
         {

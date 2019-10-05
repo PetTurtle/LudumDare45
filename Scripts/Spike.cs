@@ -29,7 +29,7 @@ public class Spike : Area2D
         {
             if (body is Player)
             {
-                GD.Print("PLAYER!");
+                ((Player) body).Kill();
             }
             else if (body is Anchor)
             {

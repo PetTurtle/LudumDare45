@@ -101,22 +101,28 @@ public class Anchor : RigidBody2D
                 brace.setActive(value);
     }
 
-    public void removeBrace(Vector2 pos)
+    public bool removeBrace(Vector2 pos)
     {
+        bool removed = false;
         Brace brace = getClosestBrace(pos);
         if (brace != null && brace.GlobalPosition.DistanceTo(pos) < 3)
         {
             brace.remove();
+            removed = true;
         }
+        return removed;
     }
 
-    public void removeClosestBrace(Vector2 pos)
+    public bool removeClosestBrace(Vector2 pos)
     {
+        bool removed = false;
         Brace brace = getClosestBrace(pos);
         if (brace != null)
         {
             brace.remove();
+            removed = true;
         }
+        return removed;
     }
 
     public void destory()
@@ -134,6 +140,11 @@ public class Anchor : RigidBody2D
             constructor.startAnchor = null;
         }
         this.QueueFree();
+    }
+
+    public float getClosestDistance(Vector2 pos)
+    {
+        return getClosestBrace(pos).GlobalPosition.DistanceTo(pos);
     }
 
     private Brace getClosestBrace(Vector2 pos)
