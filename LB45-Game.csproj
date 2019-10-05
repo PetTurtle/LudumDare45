@@ -56,6 +56,8 @@
     <Compile Include="Scripts\Connector.cs" />
     <Compile Include="Scripts\Constructor.cs" />
     <Compile Include="Scripts\Player.cs" />
+    <Compile Include="Scripts\Projectile.cs" />
+    <Compile Include="Scripts\ProjectileLauncher.cs" />
     <Compile Include="Scripts\Spike.cs" />
     <Compile Include="Scripts\Wheel.cs" />
   </ItemGroup>
