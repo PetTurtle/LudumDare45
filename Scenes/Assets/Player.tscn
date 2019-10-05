@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Player.cs" type="Script" id=1]
+[ext_resource path="res://Assets/Player/player_spriteframes.tres" type="SpriteFrames" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 3.99263
+height = 4.0065
+
+[node name="Player" type="RigidBody2D"]
+position = Vector2( 209.729, 142.203 )
+collision_layer = 2
+collision_mask = 7
+mode = 2
+script = ExtResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = ExtResource( 2 )
+animation = "run"
+speed_scale = 2.0
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 0.965 )
+shape = SubResource( 1 )
+
+[node name="GroundRay" type="RayCast2D" parent="."]
+position = Vector2( 0, 6 )
+enabled = true
+cast_to = Vector2( 0, 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LeftTopRay" type="RayCast2D" parent="."]
+position = Vector2( -4, 0 )
+rotation = 1.5708
+enabled = true
+cast_to = Vector2( 0, 2 )
+
+[node name="LeftBottomRay" type="RayCast2D" parent="."]
+position = Vector2( -4, 3 )
+rotation = 1.5708
+enabled = true
+cast_to = Vector2( 0, 2 )
+
+[node name="RightTopRay" type="RayCast2D" parent="."]
+position = Vector2( 4, 0 )
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, 2 )
+
+[node name="RightBottomRay" type="RayCast2D" parent="."]
+position = Vector2( 4, 3 )
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, 2 )
