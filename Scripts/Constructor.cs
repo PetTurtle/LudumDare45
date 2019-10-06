@@ -27,7 +27,7 @@ public class Constructor : Node2D
 
             if (Input.IsActionJustReleased("spawn_anchor"))
             {
-                if (rayCastinTerrain() || rayCastinPlayer() || rayCastinAnchor())
+                if (rayCastinTerrain() || rayCastinPlayer() || rayCastinAnchor() || (startAnchor != null && startAnchor.getBracesInRange(activeAnchor.GlobalPosition).Count == 0))
                 {
                     activeAnchor.destory();
                     activeAnchor = null;

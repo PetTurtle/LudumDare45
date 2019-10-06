@@ -166,7 +166,7 @@ public class Anchor : RigidBody2D
         return closest;
     }
 
-    private List<Brace> getBracesInRange(Vector2 pos)
+    public List<Brace> getBracesInRange(Vector2 pos)
     {
         List<Brace> inRange = new List<Brace>();
         foreach(Brace brace in braces)
