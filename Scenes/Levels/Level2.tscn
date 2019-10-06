@@ -16,7 +16,7 @@
 [node name="Level" parent="Game" instance=ExtResource( 2 )]
 
 [node name="Entrance" parent="Game/Level" instance=ExtResource( 3 )]
-position = Vector2( 328, 192 )
+position = Vector2( 1336, 176 )
 
 [node name="Spike" parent="Game/Level" instance=ExtResource( 4 )]
 position = Vector2( 1180, 184 )

@@ -12,7 +12,7 @@ public class GameManager : Node2D
     public int maxLevel;
     String menu = "res://Scenes/Levels/Menu.tscn";
 
-    String[] levels = 
+    public String[] levels = 
     {
         "res://Scenes/Levels/Level1.tscn",
         "res://Scenes/Levels/Level2.tscn",
@@ -29,8 +29,10 @@ public class GameManager : Node2D
     {
         if (id == -1)
             loadLevel("res://Scenes/Levels/Menu.tscn");
-        else
+        else if (currentlevel <= 8)
             loadLevel(levels[id]);
+        else
+            loadLevel(-1);
     }
 
     private void loadLevel(String path)
@@ -50,20 +52,12 @@ public class GameManager : Node2D
         ReadSaveFile();
         currentlevel = _data.currentLevel;
         maxLevel = _data.maxLevel;
-        if (currentlevel-1 > maxLevel)
-            maxLevel = currentlevel-1;
     }
 
     public void Save()
     {
-        if (currentlevel < 0 || currentlevel > 10)
-            _data.currentLevel = 0;
-        else
-            _data.currentLevel = currentlevel;
-        if (maxLevel < 0 || maxLevel > 10)
-            _data.maxLevel = 0;
-        else
-            _data.maxLevel = maxLevel;
+        _data.currentLevel = currentlevel;
+        _data.maxLevel = maxLevel;
         WriteSaveFile();
     }
 

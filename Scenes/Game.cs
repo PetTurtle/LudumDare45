@@ -18,6 +18,7 @@ public class Game : Node2D
         canvas = (GameCanvas)GetNode("GameCanvas");
         player.GlobalPosition = level.entrance.spawnPoint.GlobalPosition;
         player.Connect("PlayerDead", this, nameof(_Reset_Level));
+        gameManager.updateData();
     }
 
     public void _Reset_Level()  // named wrong
@@ -29,8 +30,10 @@ public class Game : Node2D
     public void NextLevel() // named wrong
     {
         player.Freeze();
+        if (gameManager.currentlevel == gameManager.maxLevel && gameManager.maxLevel + 1 < gameManager.levels.Length)
+            gameManager.maxLevel++;
+
         canvas.GameEnded(true);
-        gameManager.maxLevel++;
         gameManager.Save();
     }
 
@@ -41,7 +44,6 @@ public class Game : Node2D
 
     public void LoadNextLevel()
     {
-        gameManager.updateData();
         gameManager.currentlevel++;
         gameManager.Save();
         gameManager.loadLevel(gameManager.currentlevel);

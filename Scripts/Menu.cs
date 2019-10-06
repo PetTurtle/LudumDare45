@@ -44,7 +44,8 @@ public class Menu : Node2D
 
     public void _on_GridContainer_LoadLevel(int level)
     {
-        GD.Print("loadLevel: " + level);
+        manager.currentlevel = level;
+        manager.Save();
         manager.loadLevel(level);
     }
 }
