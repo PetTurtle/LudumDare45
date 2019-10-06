@@ -15,8 +15,11 @@ _global_script_class_icons={
 
 [application]
 
-config/name="LB45-Game"
-run/main_scene="res://Scenes/Levels/Game.tscn"
+config/name="LD45-Game"
+run/main_scene="res://Scenes/Levels/Menu.tscn"
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
+config/Version=""
+config/maxLevel=0
 
 [display]
 

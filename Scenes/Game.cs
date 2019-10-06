@@ -3,15 +3,16 @@ using System;
 
 public class Game : Node2D
 {
-    Level level;
-    Player player;
-    Constructor constructor;
-
+    private Level level;
+    private Player player;
     private int currentlevel = 0;
+    private int maxLevel = 0;
+
+    String menu = "res://Scenes/Levels/Menu.tscn";
 
     String[] levels = 
     {
-        "res://Scenes/Levels/Level9.tscn",
+        "res://Scenes/Levels/Level1.tscn",
         "res://Scenes/Levels/Level2.tscn",
         "res://Scenes/Levels/Level3.tscn",
         "res://Scenes/Levels/Level4.tscn",
@@ -32,12 +33,13 @@ public class Game : Node2D
 
     public void _Reset_Level()
     {
-        loadLevel(levels[0]);
+        loadLevel(levels[currentlevel]);
     }
 
     public void _End_Reached()
     {
-        loadLevel(levels[0]);
+        currentlevel++;
+        loadLevel(levels[currentlevel]);
     }
 
     public void loadLevel(String path)

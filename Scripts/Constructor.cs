@@ -169,7 +169,6 @@ public class Constructor : Node2D
         if (hasGooSpace())
         {
             gooAmount++;
-            GD.Print(gooAmount);
             EmitSignal("GooAmount", gooAmount);
             return true;
         }

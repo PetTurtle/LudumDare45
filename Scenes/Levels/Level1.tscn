@@ -98,5 +98,4 @@ max_value = 10.0
 texture_under = ExtResource( 12 )
 texture_progress = ExtResource( 13 )
 fill_mode = 3
-[connection signal="GooAmount" from="Constructor" to="CanvasLayer/GooCounter" method="SetValue"]
 [connection signal="SpawnGoo" from="Level/GooSprayer" to="Constructor" method="_on_GooSprayer_SpawnGoo"]

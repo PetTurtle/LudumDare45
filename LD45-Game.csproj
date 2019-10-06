@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{64F60C29-2EF7-4A31-8653-20D913206EE0}</ProjectGuid>
+    <ProjectGuid>{78CACBAD-8530-4A43-A887-B7ECDA6467C7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <OutputPath>.mono\temp\bin\$(Configuration)</OutputPath>
-    <RootNamespace>LB45Game</RootNamespace>
-    <AssemblyName>LB45-Game</AssemblyName>
+    <RootNamespace>LD45Game</RootNamespace>
+    <AssemblyName>LD45-Game</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <BaseIntermediateOutputPath>.mono\temp\obj</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)\$(Configuration)</IntermediateOutputPath>
@@ -46,6 +46,9 @@
       <HintPath>$(ProjectDir)\.mono\assemblies\GodotSharpEditor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
@@ -55,11 +58,15 @@
     <Compile Include="Scripts\Brace.cs" />
     <Compile Include="Scripts\Connector.cs" />
     <Compile Include="Scripts\Constructor.cs" />
+    <Compile Include="Scripts\DataModel.cs" />
     <Compile Include="Scripts\Entrance.cs" />
     <Compile Include="Scripts\Exit.cs" />
+    <Compile Include="Scripts\GameManager.cs" />
     <Compile Include="Scripts\GooCounter.cs" />
     <Compile Include="Scripts\GooSprayer.cs" />
     <Compile Include="Scripts\Level.cs" />
+    <Compile Include="Scripts\LevelSelector.cs" />
+    <Compile Include="Scripts\Menu.cs" />
     <Compile Include="Scripts\Player.cs" />
     <Compile Include="Scripts\PreasurePlate.cs" />
     <Compile Include="Scripts\Projectile.cs" />
@@ -67,6 +74,9 @@
     <Compile Include="Scripts\Saw.cs" />
     <Compile Include="Scripts\Spike.cs" />
     <Compile Include="Scripts\Wheel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
