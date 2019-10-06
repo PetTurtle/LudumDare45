@@ -40,4 +40,10 @@ public class Menu : Node2D
     {
         GetTree().Quit();
     }
+
+    public void _on_GridContainer_LoadLevel(int level)
+    {
+        GD.Print("loadLevel: " + level);
+        manager.loadLevel(level);
+    }
 }

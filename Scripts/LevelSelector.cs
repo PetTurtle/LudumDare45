@@ -4,7 +4,8 @@ using System.Collections.Generic;
 
 public class LevelSelector : GridContainer
 {
-    
+    [Signal]
+    public delegate void LoadLevel();
     List<Button> buttons;
 
     public override void _Ready()
@@ -25,10 +26,49 @@ public class LevelSelector : GridContainer
         }
     }
 
-    public void addSignal(GameManager manager)
+    public void _load_level_1()
     {
-        
+        EmitSignal("LoadLevel", 0);
     }
 
+    public void _load_level_2()
+    {
+        EmitSignal("LoadLevel", 1);
+    }
+    
+    public void _load_level_3()
+    {
+        EmitSignal("LoadLevel", 2);
+    }
+
+    public void _load_level_4()
+    {
+        EmitSignal("LoadLevel", 3);
+    }
+
+    public void _load_level_5()
+    {
+        EmitSignal("LoadLevel", 4);
+    }
+
+    public void _load_level_6()
+    {
+        EmitSignal("LoadLevel", 5);
+    }
+
+    public void _load_level_7()
+    {
+        EmitSignal("LoadLevel", 6);
+    }
+
+    public void _load_level_8()
+    {
+        EmitSignal("LoadLevel", 7);
+    }
+
+    public void _load_level_9()
+    {
+        EmitSignal("LoadLevel", 8);
+    }
     
 }

@@ -13,6 +13,7 @@ script = ExtResource( 2 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+editor/display_folded = true
 margin_left = 32.0
 margin_right = 144.0
 margin_bottom = 240.0
@@ -115,3 +116,13 @@ text = "Level 9"
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonPlayer" to="." method="_on_Button_pressed_player"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonLvls" to="." method="_on_ButtonLvls_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonExit" to="." method="_on_ButtonExit_pressed"]
+[connection signal="LoadLevel" from="CanvasLayer/GridContainer" to="." method="_on_GridContainer_LoadLevel"]
+[connection signal="pressed" from="CanvasLayer/GridContainer/Button" to="CanvasLayer/GridContainer" method="_load_level_1"]
+[connection signal="pressed" from="CanvasLayer/GridContainer/Button2" to="CanvasLayer/GridContainer" method="_load_level_2"]
+[connection signal="pressed" from="CanvasLayer/GridContainer/Button3" to="CanvasLayer/GridContainer" method="_load_level_3"]
+[connection signal="pressed" from="CanvasLayer/GridContainer/Button4" to="CanvasLayer/GridContainer" method="_load_level_4"]
+[connection signal="pressed" from="CanvasLayer/GridContainer/Button5" to="CanvasLayer/GridContainer" method="_load_level_5"]
+[connection signal="pressed" from="CanvasLayer/GridContainer/Button6" to="CanvasLayer/GridContainer" method="_load_level_6"]
+[connection signal="pressed" from="CanvasLayer/GridContainer/Button7" to="CanvasLayer/GridContainer" method="_load_level_7"]
+[connection signal="pressed" from="CanvasLayer/GridContainer/Button8" to="CanvasLayer/GridContainer" method="_load_level_8"]
+[connection signal="pressed" from="CanvasLayer/GridContainer/Button9" to="CanvasLayer/GridContainer" method="_load_level_9"]
