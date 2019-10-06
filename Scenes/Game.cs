@@ -22,11 +22,13 @@ public class Game : Node2D
 
     public void _Reset_Level()  // named wrong
     {
+        player.Freeze();
         canvas.GameEnded(false);
     }
 
     public void NextLevel() // named wrong
     {
+        player.Freeze();
         canvas.GameEnded(true);
         gameManager.maxLevel++;
         gameManager.Save();
@@ -48,17 +50,6 @@ public class Game : Node2D
     public void LoadMainMenu()
     {
         gameManager.loadLevel(-1);
-    }
-
-    public void loadLevel(String path)
-    {
-        try
-        {
-            GetTree().ChangeScene(path);
-        } catch
-        {
-            GD.Print("No Scene at " + path);
-        }
     }
 
     public void _on_GooSprayer_SpawnGoo(Vector2 pos)

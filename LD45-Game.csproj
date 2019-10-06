@@ -66,6 +66,7 @@
     <Compile Include="Scripts\GameManager.cs" />
     <Compile Include="Scripts\GooCounter.cs" />
     <Compile Include="Scripts\GooSprayer.cs" />
+    <Compile Include="Scripts\KillZone.cs" />
     <Compile Include="Scripts\Level.cs" />
     <Compile Include="Scripts\LevelSelector.cs" />
     <Compile Include="Scripts\Menu.cs" />

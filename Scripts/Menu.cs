@@ -34,7 +34,7 @@ public class Menu : Node2D
     
     public void _on_ButtonLvls_pressed()
     {
-        GD.Print("Levels");
+        levelSelector.Visible = !levelSelector.Visible;
     }
 
     public void _on_ButtonExit_pressed()

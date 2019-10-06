@@ -17,7 +17,7 @@ public class GameCanvas : CanvasLayer
 
     public override void _Process(float delta)
     {
-        if (Input.IsActionPressed("escape") && !endedPanel.Visible)
+        if (Input.IsActionJustPressed("escape") && !endedPanel.Visible)
         {
             returnPanel.Visible = !returnPanel.Visible;
         }

@@ -42,6 +42,13 @@ public class Player : RigidBody2D
         EmitSignal("PlayerDead");
     }
 
+    public void Freeze()
+    {
+        GravityScale = 0;
+        SetLinearVelocity(Vector2.Zero);
+        SetAngularVelocity(0);
+    }
+
     private Vector2 updatedVelocity(Vector2 velocity)
     {
         float motion = Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left");

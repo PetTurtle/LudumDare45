@@ -99,7 +99,6 @@ custom_fonts/font = ExtResource( 13 )
 text = "Next"
 
 [node name="ReturnPanel" type="Panel" parent="GameCanvas"]
-editor/display_folded = true
 visible = false
 margin_left = 146.0
 margin_top = 77.0

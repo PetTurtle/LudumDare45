@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Menu.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/GameManager.cs" type="Script" id=2]
-[ext_resource path="res://Scripts/LevelSelector.cs" type="Script" id=3]
+[ext_resource path="res://Assets/Fonts/M6.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Scripts/LevelSelector.cs" type="Script" id=4]
+[ext_resource path="res://Assets/Tileset/Tileset.tres" type="TileSet" id=5]
+[ext_resource path="res://Assets/Assets/Entrance.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Assets/Sign.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Assets/Spikes3.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Assets/Tap.png" type="Texture" id=9]
 
 [node name="Menu" type="Node2D"]
 script = ExtResource( 1 )
@@ -11,6 +17,14 @@ script = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_left = 48.0
+margin_top = 56.0
+margin_right = 137.0
+margin_bottom = 70.0
+custom_fonts/font = ExtResource( 3 )
+text = "Slimy Situation"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 editor/display_folded = true
@@ -39,12 +53,13 @@ text = "Exit"
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
 editor/display_folded = true
+visible = false
 margin_left = 176.0
 margin_top = 86.0
 margin_right = 368.0
 margin_bottom = 160.0
 columns = 3
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -114,6 +129,46 @@ margin_right = 182.0
 margin_bottom = 68.0
 disabled = true
 text = "Level 9"
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 196620, 10, 0, 196621, 9, 0, 196622, 9, 0, 196623, 8, 0, 262166, 4, 0, 327702, 3, 0, 393236, 0, 0, 393237, 0, 2, 393238, 0, 3, 458772, 0, 131072, 458773, 0, 131074, 458774, 0, 131075, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589832, 2, 0, 589838, 1, 0, 589839, 1, 0, 589840, 1, 0, 589841, 2, 0, 655360, 0, 0, 655361, 0, 2, 655362, 0, 2, 655363, 0, 2, 655364, 0, 2, 655365, 0, 2, 655366, 0, 1, 655367, 0, 1, 655368, 0, 2, 655369, 0, 3, 655374, 0, 0, 655375, 0, 2, 655376, 0, 2, 655377, 0, 3, 720896, 0, 65536, 720897, 0, 65537, 720898, 0, 65537, 720899, 0, 65537, 720900, 0, 65537, 720901, 0, 65538, 720902, 0, 65537, 720903, 0, 65537, 720904, 0, 65538, 720905, 0, 65539, 720910, 0, 131072, 720911, 0, 131074, 720912, 0, 131074, 720913, 0, 131075, 786432, 0, 131072, 786433, 0, 131073, 786434, 0, 131074, 786435, 0, 131073, 786436, 0, 131074, 786437, 0, 131074, 786438, 0, 131074, 786439, 0, 131073, 786440, 0, 131073, 786441, 0, 131075 )
+
+[node name="TileMap2" type="TileMap" parent="."]
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 131075, 0, 1, 655367, 0, 2, 655377, 0, 65536, 720897, 0, 65537, 720903, 0, 65538, 720905, 0, 131072, 786433, 0, 131073, 786441, 0, 131074, 786439, 0, 131075, 589826, 0, 327701, 2, 0, 786430, 7, 0, 786431, 7, 0, 720896, 7, 0, 720897, 7, 0, 720898, 7, 0, 720899, 7, 0, 720900, 7, 0, 720901, 7, 0, 720902, 7, 0, 720903, 7, 0, 720904, 7, 0, 720905, 7, 0, 720906, 7, 0, 720907, 7, 0, 720908, 7, 0, 720909, 7, 0, 720910, 7, 0, 720911, 7, 0, 720912, 7, 0, 720913, 7, 0, 720914, 7, 0, 720915, 7, 0, 720916, 7, 0, 720917, 7, 0, 720918, 7, 0, 720919, 7, 0, 720920, 7, 0, 720921, 7, 0, 720922, 7, 0, 851966, 6, 0, 851967, 6, 0, 786432, 6, 0, 786433, 6, 0, 786434, 6, 0, 786435, 6, 0, 786436, 6, 0, 786437, 6, 0, 786438, 6, 0, 786439, 6, 0, 786440, 6, 0, 786441, 6, 0, 786442, 6, 0, 786443, 6, 0, 786444, 6, 0, 786445, 6, 0, 786446, 6, 0, 786447, 6, 0, 786448, 6, 0, 786449, 6, 0, 786450, 6, 0, 786451, 6, 0, 786452, 6, 0, 786453, 6, 0, 786454, 6, 0, 786455, 6, 0, 786456, 6, 0, 786457, 6, 0, 786458, 6, 0, 917502, 6, 0, 917503, 6, 0, 851968, 6, 0, 851969, 6, 0, 851970, 6, 0, 851971, 6, 0, 851972, 6, 0, 851973, 6, 0, 851974, 6, 0, 851975, 6, 0, 851976, 6, 0, 851977, 6, 0, 851978, 6, 0, 851979, 6, 0, 851980, 6, 0, 851981, 6, 0, 851982, 6, 0, 851983, 6, 0, 851984, 6, 0, 851985, 6, 0, 851986, 6, 0, 851987, 6, 0, 851988, 6, 0, 851989, 6, 0, 851990, 6, 0, 851991, 6, 0, 851992, 6, 0, 851993, 6, 0, 851994, 6, 0, 983038, 6, 0, 983039, 6, 0, 917504, 6, 0, 917505, 6, 0, 917506, 6, 0, 917507, 6, 0, 917508, 6, 0, 917509, 6, 0, 917510, 6, 0, 917511, 6, 0, 917512, 6, 0, 917513, 6, 0, 917514, 6, 0, 917515, 6, 0, 917516, 6, 0, 917517, 6, 0, 917518, 6, 0, 917519, 6, 0, 917520, 6, 0, 917521, 6, 0, 917522, 6, 0, 917523, 6, 0, 917524, 6, 0, 917525, 6, 0, 917526, 6, 0, 917527, 6, 0, 917528, 6, 0, 917529, 6, 0, 917530, 6, 0, 1048574, 6, 0, 1048575, 6, 0, 983040, 6, 0, 983041, 6, 0, 983042, 6, 0, 983043, 6, 0, 983044, 6, 0, 983045, 6, 0, 983046, 6, 0, 983047, 6, 0, 983048, 6, 0, 983049, 6, 0, 983050, 6, 0, 983051, 6, 0, 983052, 6, 0, 983053, 6, 0, 983054, 6, 0, 983055, 6, 0, 983056, 6, 0, 983057, 6, 0, 983058, 6, 0, 983059, 6, 0, 983060, 6, 0, 983061, 6, 0, 983062, 6, 0, 983063, 6, 0, 983064, 6, 0, 983065, 6, 0, 983066, 6, 0 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 256, 144 )
+texture = ExtResource( 6 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 335, 88 )
+texture = ExtResource( 7 )
+
+[node name="Sprite3" type="Sprite" parent="."]
+position = Vector2( 240, 48 )
+texture = ExtResource( 8 )
+
+[node name="Sprite4" type="Sprite" parent="."]
+position = Vector2( 240, 48 )
+texture = ExtResource( 8 )
+
+[node name="Sprite5" type="Sprite" parent="."]
+position = Vector2( 224, 48 )
+texture = ExtResource( 8 )
+
+[node name="Sprite6" type="Sprite" parent="."]
+position = Vector2( 208, 48 )
+texture = ExtResource( 8 )
+
+[node name="Sprite7" type="Sprite" parent="."]
+position = Vector2( 343, 80 )
+texture = ExtResource( 9 )
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonPlayer" to="." method="_on_Button_pressed_player"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonLvls" to="." method="_on_ButtonLvls_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/ButtonExit" to="." method="_on_ButtonExit_pressed"]
