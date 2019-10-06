@@ -5,6 +5,11 @@ public class Player : RigidBody2D
 {
     [Signal]
     public delegate void PlayerDead();
+
+    [Signal]
+    public delegate void PlayerJump();
+    [Signal]
+    public delegate void PlayerHit();
     public int moveSpeed = 5;
     public int jumpForce = 70;
     public int maxSpeed = 50;
@@ -44,6 +49,7 @@ public class Player : RigidBody2D
 
     public void Freeze()
     {
+        EmitSignal("PlayerHit");
         GravityScale = 0;
         SetLinearVelocity(Vector2.Zero);
         SetAngularVelocity(0);
@@ -71,6 +77,7 @@ public class Player : RigidBody2D
     {
         if (Input.IsActionJustPressed("move_up") && isGround())
         {
+            EmitSignal("PlayerJump");
             Vector2 velocity = GetLinearVelocity();
             velocity.y = 0;
             SetLinearVelocity(velocity);

@@ -7,6 +7,10 @@ public class Constructor : Node2D
 {
     [Signal]
     public delegate void GooAmount();
+    [Signal]
+    public delegate void GooPlace();
+    [Signal]
+    public delegate void GooRemove();
     public int gooAmount = 0;
     public int maxGoo = 10;
     public Anchor activeAnchor;
@@ -171,6 +175,7 @@ public class Constructor : Node2D
         if (hasGooSpace())
         {
             gooAmount++;
+            EmitSignal("GooRemove");
             EmitSignal("GooAmount", gooAmount);
             return true;
         }
@@ -182,6 +187,7 @@ public class Constructor : Node2D
         if (gooAmount - 1 >= 0)
         {
             gooAmount--;
+            EmitSignal("GooPlace");
             EmitSignal("GooAmount", gooAmount);
             return true;
         }

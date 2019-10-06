@@ -1,19 +1,24 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scenes/Game.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/GameManager.cs" type="Script" id=2]
 [ext_resource path="res://Scenes/Assets/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scripts/Constructor.cs" type="Script" id=4]
-[ext_resource path="res://Scripts/GameCanvas.cs" type="Script" id=5]
-[ext_resource path="res://Assets/UI/GooUI.png" type="Texture" id=6]
-[ext_resource path="res://Scripts/GooCounter.cs" type="Script" id=7]
-[ext_resource path="res://Assets/Fonts/M6.tres" type="DynamicFont" id=8]
-[ext_resource path="res://Assets/UI/GooEmpty.png" type="Texture" id=9]
-[ext_resource path="res://Assets/UI/GooFull.png" type="Texture" id=10]
-[ext_resource path="res://Assets/UI/panelTexture.tres" type="StyleBox" id=11]
-[ext_resource path="res://Scripts/GameEndedPanel.cs" type="Script" id=12]
-[ext_resource path="res://Assets/Fonts/M5.tres" type="DynamicFont" id=13]
-[ext_resource path="res://Scripts/ReturnPanel.cs" type="Script" id=14]
+[ext_resource path="res://Scripts/AudioManager.cs" type="Script" id=4]
+[ext_resource path="res://Assets/Audio/hit.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Audio/jump.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Audio/place.wav" type="AudioStream" id=7]
+[ext_resource path="res://Assets/Audio/remove.wav" type="AudioStream" id=8]
+[ext_resource path="res://Scripts/Constructor.cs" type="Script" id=9]
+[ext_resource path="res://Scripts/GameCanvas.cs" type="Script" id=10]
+[ext_resource path="res://Assets/UI/GooUI.png" type="Texture" id=11]
+[ext_resource path="res://Scripts/GooCounter.cs" type="Script" id=12]
+[ext_resource path="res://Assets/Fonts/M6.tres" type="DynamicFont" id=13]
+[ext_resource path="res://Assets/UI/GooEmpty.png" type="Texture" id=14]
+[ext_resource path="res://Assets/UI/GooFull.png" type="Texture" id=15]
+[ext_resource path="res://Assets/UI/panelTexture.tres" type="StyleBox" id=16]
+[ext_resource path="res://Scripts/GameEndedPanel.cs" type="Script" id=17]
+[ext_resource path="res://Assets/Fonts/M5.tres" type="DynamicFont" id=18]
+[ext_resource path="res://Scripts/ReturnPanel.cs" type="Script" id=19]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -24,11 +29,31 @@ script = ExtResource( 2 )
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 0 )
 
-[node name="Constructor" type="Node2D" parent="."]
+[node name="AudioManager" type="Node2D" parent="Player"]
 script = ExtResource( 4 )
 
+[node name="Hit" type="AudioStreamPlayer2D" parent="Player/AudioManager"]
+stream = ExtResource( 5 )
+volume_db = -20.0
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="Player/AudioManager"]
+stream = ExtResource( 6 )
+volume_db = -10.0
+
+[node name="Place" type="AudioStreamPlayer2D" parent="Player/AudioManager"]
+stream = ExtResource( 7 )
+volume_db = -20.0
+
+[node name="Remove" type="AudioStreamPlayer2D" parent="Player/AudioManager"]
+stream = ExtResource( 8 )
+volume_db = -10.0
+pitch_scale = 2.52
+
+[node name="Constructor" type="Node2D" parent="."]
+script = ExtResource( 9 )
+
 [node name="GameCanvas" type="CanvasLayer" parent="."]
-script = ExtResource( 5 )
+script = ExtResource( 10 )
 
 [node name="GooCounter" type="TextureRect" parent="GameCanvas"]
 editor/display_folded = true
@@ -37,8 +62,8 @@ margin_top = 10.0
 margin_right = 50.5862
 margin_bottom = 49.9679
 rect_scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 6 )
-script = ExtResource( 7 )
+texture = ExtResource( 11 )
+script = ExtResource( 12 )
 
 [node name="Label" type="Label" parent="GameCanvas/GooCounter"]
 margin_left = 8.08
@@ -46,7 +71,7 @@ margin_top = 11.93
 margin_right = 28.08
 margin_bottom = 25.93
 rect_scale = Vector2( 0.7, 0.7 )
-custom_fonts/font = ExtResource( 8 )
+custom_fonts/font = ExtResource( 13 )
 text = "0"
 align = 1
 valign = 1
@@ -58,8 +83,8 @@ margin_top = 4.0
 margin_right = 23.0
 margin_bottom = 29.0
 max_value = 10.0
-texture_under = ExtResource( 9 )
-texture_progress = ExtResource( 10 )
+texture_under = ExtResource( 14 )
+texture_progress = ExtResource( 15 )
 fill_mode = 3
 
 [node name="GameEndedPanel" type="Panel" parent="GameCanvas"]
@@ -69,15 +94,15 @@ margin_left = 138.0
 margin_top = 109.0
 margin_right = 303.0
 margin_bottom = 177.0
-custom_styles/panel = ExtResource( 11 )
-script = ExtResource( 12 )
+custom_styles/panel = ExtResource( 16 )
+script = ExtResource( 17 )
 
 [node name="Message" type="Label" parent="GameCanvas/GameEndedPanel"]
 margin_left = 30.0
 margin_top = 12.0
 margin_right = 143.0
 margin_bottom = 26.0
-custom_fonts/font = ExtResource( 8 )
+custom_fonts/font = ExtResource( 13 )
 text = "Level Complete"
 align = 1
 valign = 1
@@ -87,7 +112,7 @@ margin_left = 19.0
 margin_top = 38.0
 margin_right = 53.0
 margin_bottom = 58.0
-custom_fonts/font = ExtResource( 13 )
+custom_fonts/font = ExtResource( 18 )
 text = "Back"
 
 [node name="ButtonNext" type="Button" parent="GameCanvas/GameEndedPanel"]
@@ -95,7 +120,7 @@ margin_left = 115.0
 margin_top = 38.0
 margin_right = 150.0
 margin_bottom = 58.0
-custom_fonts/font = ExtResource( 13 )
+custom_fonts/font = ExtResource( 18 )
 text = "Next"
 
 [node name="ReturnPanel" type="Panel" parent="GameCanvas"]
@@ -104,8 +129,8 @@ margin_left = 146.0
 margin_top = 77.0
 margin_right = 271.0
 margin_bottom = 137.0
-custom_styles/panel = ExtResource( 11 )
-script = ExtResource( 14 )
+custom_styles/panel = ExtResource( 16 )
+script = ExtResource( 19 )
 
 [node name="Label" type="Label" parent="GameCanvas/ReturnPanel"]
 margin_left = 8.0
@@ -127,7 +152,11 @@ margin_top = 30.965
 margin_right = 108.0
 margin_bottom = 50.965
 text = "No"
+[connection signal="PlayerHit" from="Player" to="Player/AudioManager" method="Hit"]
+[connection signal="PlayerJump" from="Player" to="Player/AudioManager" method="Jump"]
 [connection signal="GooAmount" from="Constructor" to="GameCanvas" method="setGoo"]
+[connection signal="GooPlace" from="Constructor" to="Player/AudioManager" method="Place"]
+[connection signal="GooRemove" from="Constructor" to="Player/AudioManager" method="Remove"]
 [connection signal="Back" from="GameCanvas/GameEndedPanel" to="." method="LoadMainMenu"]
 [connection signal="Next" from="GameCanvas/GameEndedPanel" to="." method="LoadNextLevel"]
 [connection signal="Retry" from="GameCanvas/GameEndedPanel" to="." method="ResetCurrentLevel"]
