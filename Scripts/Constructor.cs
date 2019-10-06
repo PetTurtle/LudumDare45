@@ -9,7 +9,6 @@ public class Constructor : Node2D
     public delegate void GooAmount();
     public int gooAmount = 0;
     public int maxGoo = 10;
-    public Player player;
     public Anchor activeAnchor;
     public Anchor startAnchor;
     private SC.List<Anchor> anchors = new SC.List<Anchor>();
@@ -57,7 +56,7 @@ public class Constructor : Node2D
         }
         else // does not have active anchor
         {
-            if (Input.IsActionJustPressed("spawn_anchor") && !rayCastinTerrain() && player.isGround() && removeGoo())
+            if (Input.IsActionJustPressed("spawn_anchor") && !rayCastinTerrain() && removeGoo())
             {
                 activeAnchor = newAnchor(GetGlobalMousePosition());
                 startAnchor = getRayCastAnchor();

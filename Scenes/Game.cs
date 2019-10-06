@@ -11,11 +11,11 @@ public class Game : Node2D
 
     String[] levels = 
     {
-        "res://Scenes/Levels/Level3.tscn",
+        "res://Scenes/Levels/Level5.tscn",
         "res://Scenes/Levels/Level2.tscn",
         "res://Scenes/Levels/Level3.tscn",
-        "4",
-        "5",
+        "res://Scenes/Levels/Level4.tscn",
+        "res://Scenes/Levels/Level5.tscn",
         "6",
         "7",
         "8"
@@ -24,8 +24,6 @@ public class Game : Node2D
     {
         level = (Level)GetNode("Level");
         player = (Player)GetNode("Player");
-        constructor = (Constructor)GetNode("Constructor");
-        constructor.player = player;
         player.GlobalPosition = level.entrance.spawnPoint.GlobalPosition;
         player.Connect("PlayerDead", this, nameof(_Reset_Level));
         level.exit.Connect("PlayerExit", this, nameof(_End_Reached));
