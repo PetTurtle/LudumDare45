@@ -7,7 +7,7 @@ public class Constructor : Node2D
 {
     [Signal]
     public delegate void GooAmount();
-    public int gooAmount = 10;
+    public int gooAmount = 0;
     public int maxGoo = 10;
     public Player player;
     public Anchor activeAnchor;
@@ -155,6 +155,14 @@ public class Constructor : Node2D
             }
         }
         return closest;
+    }
+
+    public void _on_GooSprayer_SpawnGoo(Vector2 position)
+    {
+        Anchor anchor = newAnchor(position);
+        anchor.setActive(true);
+        anchor.AddCentralForce(new Vector2(0, 0.1f));
+        anchors.Add(anchor);
     }
 
     public bool addGoo()

@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="LB45-Game"
-run/main_scene="res://Scenes/Game.tscn"
+run/main_scene="res://Scenes/Levels/Game.tscn"
 
 [display]
 
@@ -66,5 +66,5 @@ remove_anchor={
 
 quality/2d/gles2_use_nvidia_rect_flicker_workaround=true
 quality/2d/use_pixel_snap=true
-environment/default_clear_color=Color( 0.270588, 0.286275, 0.294118, 1 )
+environment/default_clear_color=Color( 0.0705882, 0.0705882, 0.0705882, 1 )
 environment/default_environment="res://default_env.tres"

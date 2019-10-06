@@ -7,11 +7,13 @@ public class Game : Node2D
     Player player;
     Constructor constructor;
 
+    private int currentlevel = 0;
+
     String[] levels = 
     {
-        "res://Scenes/Game.tscn",
-        "2",
-        "3",
+        "res://Scenes/Levels/Level3.tscn",
+        "res://Scenes/Levels/Level2.tscn",
+        "res://Scenes/Levels/Level3.tscn",
         "4",
         "5",
         "6",
