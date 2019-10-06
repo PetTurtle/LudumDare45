@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Entrance : StaticBody2D
+public class Entrance : Node2D
 {
     public Node2D spawnPoint;
     public override void _Ready()

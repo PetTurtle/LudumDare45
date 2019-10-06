@@ -22,13 +22,14 @@ public class Menu : Node2D
         if (manager.currentlevel != 0)
             playButton.Text = "Continue";
 
+        manager.updateData();
         levelSelector = (LevelSelector)levelsGrid;
         levelSelector.EnableUpTo(manager.maxLevel);
     }
 
     public void _on_Button_pressed_player()
     {
-        manager.loadLevel(0);
+        manager.loadLevel(manager.currentlevel);
     }
     
     public void _on_ButtonLvls_pressed()

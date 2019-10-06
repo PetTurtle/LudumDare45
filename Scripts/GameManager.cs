@@ -24,12 +24,6 @@ public class GameManager : Node2D
         "res://Scenes/Levels/Level8.tscn",
         "res://Scenes/Levels/Level9.tscn"
     };
-    public override void _Ready()
-    {
-        gameVersion = (String) ProjectSettings.GetSetting("application/config/Version");
-        updateData();
-        Save();
-    }
 
     public void loadLevel(int id)
     {
@@ -56,12 +50,20 @@ public class GameManager : Node2D
         ReadSaveFile();
         currentlevel = _data.currentLevel;
         maxLevel = _data.maxLevel;
+        if (currentlevel-1 > maxLevel)
+            maxLevel = currentlevel-1;
     }
 
     public void Save()
     {
-        _data.currentLevel = currentlevel;
-        _data.maxLevel = maxLevel;
+        if (currentlevel < 0 || currentlevel > 10)
+            _data.currentLevel = 0;
+        else
+            _data.currentLevel = currentlevel;
+        if (maxLevel < 0 || maxLevel > 10)
+            _data.maxLevel = 0;
+        else
+            _data.maxLevel = maxLevel;
         WriteSaveFile();
     }
 

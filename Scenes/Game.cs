@@ -7,6 +7,7 @@ public class Game : Node2D
     private Player player;
     private GameManager gameManager;
     private Constructor constructor;
+    private GameCanvas canvas;
 
     public override void _Ready()
     {
@@ -14,21 +15,39 @@ public class Game : Node2D
         player = (Player)GetNode("Player");
         gameManager = (GameManager)GetNode("GameManager");
         constructor = (Constructor)GetNode("Constructor");
+        canvas = (GameCanvas)GetNode("GameCanvas");
         player.GlobalPosition = level.entrance.spawnPoint.GlobalPosition;
         player.Connect("PlayerDead", this, nameof(_Reset_Level));
-        level.exit.Connect("PlayerExit", this, nameof(_End_Reached));
     }
 
-    public void _Reset_Level()
+    public void _Reset_Level()  // named wrong
+    {
+        canvas.GameEnded(false);
+    }
+
+    public void NextLevel() // named wrong
+    {
+        canvas.GameEnded(true);
+        gameManager.maxLevel++;
+        gameManager.Save();
+    }
+
+    public void ResetCurrentLevel()
     {
         gameManager.loadLevel(gameManager.currentlevel);
     }
 
-    public void _End_Reached()
+    public void LoadNextLevel()
     {
+        gameManager.updateData();
         gameManager.currentlevel++;
         gameManager.Save();
         gameManager.loadLevel(gameManager.currentlevel);
+    }
+
+    public void LoadMainMenu()
+    {
+        gameManager.loadLevel(-1);
     }
 
     public void loadLevel(String path)

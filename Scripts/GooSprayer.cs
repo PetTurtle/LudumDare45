@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class GooSprayer : StaticBody2D
+public class GooSprayer : Node2D
 {
     [Signal]
     public delegate void SpawnGoo();

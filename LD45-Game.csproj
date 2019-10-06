@@ -62,6 +62,7 @@
     <Compile Include="Scripts\Entrance.cs" />
     <Compile Include="Scripts\Exit.cs" />
     <Compile Include="Scripts\GameCanvas.cs" />
+    <Compile Include="Scripts\GameEndedPanel.cs" />
     <Compile Include="Scripts\GameManager.cs" />
     <Compile Include="Scripts\GooCounter.cs" />
     <Compile Include="Scripts\GooSprayer.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Scripts\PreasurePlate.cs" />
     <Compile Include="Scripts\Projectile.cs" />
     <Compile Include="Scripts\ProjectileLauncher.cs" />
+    <Compile Include="Scripts\ReturnPanel.cs" />
     <Compile Include="Scripts\Saw.cs" />
     <Compile Include="Scripts\Spike.cs" />
     <Compile Include="Scripts\Wheel.cs" />

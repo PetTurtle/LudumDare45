@@ -158,9 +158,11 @@ public class Constructor : Node2D
 
     public void SpawnGoo(Vector2 position)
     {
-        Anchor anchor = newAnchor(position);
+        Random ran = new Random();
+        Vector2 offset = new Vector2(ran.Next(-5, 5), ran.Next(-5, 5));
+        Anchor anchor = newAnchor(position + offset);
         anchor.setActive(true);
-        anchor.AddCentralForce(new Vector2(0, 0.1f));
+        anchor.AddCentralForce(new Vector2(0, ran.Next(-3, -1)));
         anchors.Add(anchor);
     }
 
