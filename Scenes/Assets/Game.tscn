@@ -88,7 +88,6 @@ texture_progress = ExtResource( 15 )
 fill_mode = 3
 
 [node name="GameEndedPanel" type="Panel" parent="GameCanvas"]
-editor/display_folded = true
 visible = false
 margin_left = 138.0
 margin_top = 109.0
@@ -137,6 +136,7 @@ margin_left = 8.0
 margin_top = 5.0
 margin_right = 119.0
 margin_bottom = 19.0
+custom_fonts/font = ExtResource( 13 )
 text = "Return  To Menu?"
 
 [node name="ButtonYes" type="Button" parent="GameCanvas/ReturnPanel"]
@@ -144,6 +144,7 @@ margin_left = 12.0
 margin_top = 30.965
 margin_right = 46.0
 margin_bottom = 50.965
+custom_fonts/font = ExtResource( 18 )
 text = "Yes"
 
 [node name="ButtonNo" type="Button" parent="GameCanvas/ReturnPanel"]
@@ -151,6 +152,7 @@ margin_left = 78.0
 margin_top = 30.965
 margin_right = 108.0
 margin_bottom = 50.965
+custom_fonts/font = ExtResource( 18 )
 text = "No"
 [connection signal="PlayerHit" from="Player" to="Player/AudioManager" method="Hit"]
 [connection signal="PlayerJump" from="Player" to="Player/AudioManager" method="Jump"]

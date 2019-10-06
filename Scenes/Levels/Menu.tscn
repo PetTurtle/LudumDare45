@@ -27,7 +27,6 @@ custom_fonts/font = ExtResource( 3 )
 text = "Slimy Situation"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-editor/display_folded = true
 margin_left = 32.0
 margin_right = 144.0
 margin_bottom = 240.0
@@ -37,18 +36,21 @@ alignment = 1
 margin_top = 86.0
 margin_right = 112.0
 margin_bottom = 106.0
+custom_fonts/font = ExtResource( 3 )
 text = "Play"
 
 [node name="ButtonLvls" type="Button" parent="CanvasLayer/VBoxContainer"]
 margin_top = 110.0
 margin_right = 112.0
 margin_bottom = 130.0
+custom_fonts/font = ExtResource( 3 )
 text = "Levels"
 
 [node name="ButtonExit" type="Button" parent="CanvasLayer/VBoxContainer"]
 margin_top = 134.0
 margin_right = 112.0
 margin_bottom = 154.0
+custom_fonts/font = ExtResource( 3 )
 text = "Exit"
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
@@ -67,6 +69,7 @@ __meta__ = {
 [node name="Button" type="Button" parent="CanvasLayer/GridContainer"]
 margin_right = 58.0
 margin_bottom = 20.0
+custom_fonts/font = ExtResource( 3 )
 disabled = true
 text = "Level 1"
 
@@ -74,6 +77,7 @@ text = "Level 1"
 margin_left = 62.0
 margin_right = 120.0
 margin_bottom = 20.0
+custom_fonts/font = ExtResource( 3 )
 disabled = true
 text = "Level 2"
 
@@ -81,6 +85,7 @@ text = "Level 2"
 margin_left = 124.0
 margin_right = 182.0
 margin_bottom = 20.0
+custom_fonts/font = ExtResource( 3 )
 disabled = true
 text = "Level 3"
 
@@ -88,6 +93,7 @@ text = "Level 3"
 margin_top = 24.0
 margin_right = 58.0
 margin_bottom = 44.0
+custom_fonts/font = ExtResource( 3 )
 disabled = true
 text = "Level 4"
 
@@ -96,6 +102,7 @@ margin_left = 62.0
 margin_top = 24.0
 margin_right = 120.0
 margin_bottom = 44.0
+custom_fonts/font = ExtResource( 3 )
 disabled = true
 text = "Level 5"
 
@@ -104,6 +111,7 @@ margin_left = 124.0
 margin_top = 24.0
 margin_right = 182.0
 margin_bottom = 44.0
+custom_fonts/font = ExtResource( 3 )
 disabled = true
 text = "Level 6"
 
@@ -111,6 +119,7 @@ text = "Level 6"
 margin_top = 48.0
 margin_right = 58.0
 margin_bottom = 68.0
+custom_fonts/font = ExtResource( 3 )
 disabled = true
 text = "Level 7"
 
@@ -119,6 +128,7 @@ margin_left = 62.0
 margin_top = 48.0
 margin_right = 120.0
 margin_bottom = 68.0
+custom_fonts/font = ExtResource( 3 )
 disabled = true
 text = "Level 9"
 
@@ -127,6 +137,7 @@ margin_left = 124.0
 margin_top = 48.0
 margin_right = 182.0
 margin_bottom = 68.0
+custom_fonts/font = ExtResource( 3 )
 disabled = true
 text = "Level 9"
 

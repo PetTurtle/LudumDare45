@@ -17,8 +17,10 @@ _global_script_class_icons={
 
 config/name="LD45-Game"
 run/main_scene="res://Scenes/Levels/Menu.tscn"
-boot_splash/bg_color=Color( 0, 0, 0, 1 )
-config/Version=""
+boot_splash/image="res://Assets/Tileset/Spash.PNG"
+boot_splash/bg_color=Color( 0.301961, 0.65098, 1, 1 )
+config/icon="res://Assets/Tileset/Logo.PNG"
+config/Version="1.0"
 config/maxLevel=0
 
 [display]
