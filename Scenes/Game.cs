@@ -11,7 +11,7 @@ public class Game : Node2D
 
     String[] levels = 
     {
-        "res://Scenes/Levels/Level8.tscn",
+        "res://Scenes/Levels/Level9.tscn",
         "res://Scenes/Levels/Level2.tscn",
         "res://Scenes/Levels/Level3.tscn",
         "res://Scenes/Levels/Level4.tscn",
