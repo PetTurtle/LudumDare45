@@ -33,10 +33,13 @@ public class GameManager : Node2D
 
     public void loadLevel(int id)
     {
-        loadLevel(levels[id]);
+        if (id == -1)
+            loadLevel("res://Scenes/Levels/Menu.tscn");
+        else
+            loadLevel(levels[id]);
     }
 
-    public void loadLevel(String path)
+    private void loadLevel(String path)
     {
         try
         {

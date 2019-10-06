@@ -156,7 +156,7 @@ public class Constructor : Node2D
         return closest;
     }
 
-    public void _on_GooSprayer_SpawnGoo(Vector2 position)
+    public void SpawnGoo(Vector2 position)
     {
         Anchor anchor = newAnchor(position);
         anchor.setActive(true);

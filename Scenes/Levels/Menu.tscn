@@ -38,6 +38,7 @@ margin_bottom = 154.0
 text = "Exit"
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
+editor/display_folded = true
 margin_left = 176.0
 margin_top = 86.0
 margin_right = 368.0

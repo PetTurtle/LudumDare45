@@ -5,27 +5,15 @@ public class Game : Node2D
 {
     private Level level;
     private Player player;
-    private int currentlevel = 0;
-    private int maxLevel = 0;
+    private GameManager gameManager;
+    private Constructor constructor;
 
-    String menu = "res://Scenes/Levels/Menu.tscn";
-
-    String[] levels = 
-    {
-        "res://Scenes/Levels/Level1.tscn",
-        "res://Scenes/Levels/Level2.tscn",
-        "res://Scenes/Levels/Level3.tscn",
-        "res://Scenes/Levels/Level4.tscn",
-        "res://Scenes/Levels/Level5.tscn",
-        "res://Scenes/Levels/Level6.tscn",
-        "res://Scenes/Levels/Level7.tscn",
-        "res://Scenes/Levels/Level8.tscn",
-        "res://Scenes/Levels/Level9.tscn"
-    };
     public override void _Ready()
     {
         level = (Level)GetNode("Level");
         player = (Player)GetNode("Player");
+        gameManager = (GameManager)GetNode("GameManager");
+        constructor = (Constructor)GetNode("Constructor");
         player.GlobalPosition = level.entrance.spawnPoint.GlobalPosition;
         player.Connect("PlayerDead", this, nameof(_Reset_Level));
         level.exit.Connect("PlayerExit", this, nameof(_End_Reached));
@@ -33,13 +21,14 @@ public class Game : Node2D
 
     public void _Reset_Level()
     {
-        loadLevel(levels[currentlevel]);
+        gameManager.loadLevel(gameManager.currentlevel);
     }
 
     public void _End_Reached()
     {
-        currentlevel++;
-        loadLevel(levels[currentlevel]);
+        gameManager.currentlevel++;
+        gameManager.Save();
+        gameManager.loadLevel(gameManager.currentlevel);
     }
 
     public void loadLevel(String path)
@@ -51,5 +40,10 @@ public class Game : Node2D
         {
             GD.Print("No Scene at " + path);
         }
+    }
+
+    public void _on_GooSprayer_SpawnGoo(Vector2 pos)
+    {
+        constructor.SpawnGoo(pos);
     }
 }

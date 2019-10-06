@@ -3,8 +3,9 @@ using System;
 
 public class GooCounter : TextureRect
 {
-    Label label;
-    TextureProgress progress;
+    private Label label;
+    private TextureProgress progress;
+    
     public override void _Ready()
     {
         label = (Label)GetNode("Label");

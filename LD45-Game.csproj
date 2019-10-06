@@ -61,6 +61,7 @@
     <Compile Include="Scripts\DataModel.cs" />
     <Compile Include="Scripts\Entrance.cs" />
     <Compile Include="Scripts\Exit.cs" />
+    <Compile Include="Scripts\GameCanvas.cs" />
     <Compile Include="Scripts\GameManager.cs" />
     <Compile Include="Scripts\GooCounter.cs" />
     <Compile Include="Scripts\GooSprayer.cs" />
