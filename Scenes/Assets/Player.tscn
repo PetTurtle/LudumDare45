@@ -20,7 +20,6 @@ current = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 2 )
 animation = "run"
-frame = 3
 speed_scale = 2.0
 playing = true
 
@@ -31,7 +30,7 @@ shape = SubResource( 1 )
 [node name="GroundRay" type="RayCast2D" parent="."]
 position = Vector2( 0, 6 )
 enabled = true
-cast_to = Vector2( 0, 4 )
+cast_to = Vector2( 0, 5 )
 collision_mask = 31
 collide_with_areas = true
 __meta__ = {
